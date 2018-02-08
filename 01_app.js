@@ -1,10 +1,7 @@
 const express = require('express');
 const app = express();
 app.use(express.static('public'));
-app.get('/html/01_form.html', function (req, res) {
- console.log(__dirname);
- res.sendFile( __dirname + "/" + "01_form.html" );
-})
+let identifiant = 1;
 
 app.get('/', (req, res) => {
  console.log('accueil')
@@ -16,7 +13,7 @@ const transforme_en_tableau = (collection) => {
 	for(elm of collection) {
 		html += "<tr>";
 		for(p in elm) {
-			html += "<td>" + elm[p] + "/td";
+			html += "<td>" + elm[p] + "</td>";
 		}
 		html += "</tr>";
 	}
@@ -24,32 +21,41 @@ const transforme_en_tableau = (collection) => {
 	return html;
 }
 
+app.get('/formulaire', function (req, res) {
+	console.log(__dirname);
+	res.sendFile( __dirname + "/public/html/" + "01_form.html" );
+})
+
 app.get('/traiter_get', function (req, res) {
 	 // Preparer l'output en format JSON
 
 	console.log('la route /traiter_get')
+	identifiant++;
 
 	// on utilise l'objet req.query pour récupérer les données GET
 	 let reponse = {
 	 prenom:req.query.prenom,
 	 nom:req.query.nom,
 	 courriel:req.query.courriel,
-	 telephone:req.query.telephone
+	 telephone:req.query.telephone,
+	 id:identifiant
 	 };
 	console.log(reponse);
 
 	const fs = require('fs');
 
-	fs.appendFile('unfichier.txt', ',', function (err) {
+	fs.appendFile('public/data/membres.txt', ',' + JSON.stringify(reponse), function (err) {
 	  if (err) throw err;
 	  console.log('Sauvegardé');
 	});
 
-	 res.end(JSON.stringify(reponse));
+	 res.end("Membre ajouté à la liste");
 })
 
 app.get('/membres', function (req, res) {
-	fs.readFile('public/data/membres.txt' 'utf8', function (err, data) {
+	const fs = require('fs');
+
+	fs.readFile('public/data/membres.txt', 'utf8', function (err, data) {
 		if (err) throw err;
 		let collection = JSON.parse('[' +data+ ']');
 
