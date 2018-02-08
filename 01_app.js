@@ -11,6 +11,10 @@ app.get('/', (req, res) => {
  res.end('<h1>Accueil</h1>')
 })
 
+const transforme_en_tableau = (collection) => (
+	let html = "<head><meta charset='utf-8'><link rel='stylesheet' type='text/css' href='../css/style.css'></head><body><h1>Liste des membres - Exercice 4</h1><table><tr><th>Prénom</th><th>Nom</th><th>Courriel</th><th>Téléphone</th></tr></table></body>"
+)
+
 app.get('/traiter_get', function (req, res) {
 	 // Preparer l'output en format JSON
 
