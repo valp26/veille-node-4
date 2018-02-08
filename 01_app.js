@@ -19,7 +19,9 @@ console.log('la route /traiter_get')
 // on utilise l'objet req.query pour récupérer les données GET
  let reponse = {
  prenom:req.query.prenom,
- nom:req.query.nom
+ nom:req.query.nom,
+ courriel:req.query.courriel,
+ telephone:req.query.telephone
  };
 console.log(reponse);
  res.end(JSON.stringify(reponse));
