@@ -35,6 +35,15 @@ app.get('/traiter_get', function (req, res) {
 	 res.end(JSON.stringify(reponse));
 })
 
+app.get('/membres', function (req, res) {
+	fs.readFile('public/data/membres.txt' 'utf8', function (err, data) {
+		if (err) throw err;
+		let collection = JSON.parse('[' +data+ ']');
+
+		res.end(transforme_en_tableau(collection))
+	});
+})
+
 var server = app.listen(8081, function () {
  var host = server.address().address
  var port = server.address().port
