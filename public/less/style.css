@@ -1,0 +1,12 @@
+body {
+  font-family: "Arial", sans-serif;
+  line-height: 1.5;
+  margin: 0;
+  padding: 0;
+}
+body table {
+  border: 1px solid #ccc;
+  border-collapse: collapse;
+  width: 700px;
+  table-layout: fixed;
+}

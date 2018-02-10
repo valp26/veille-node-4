@@ -9,7 +9,7 @@ app.get('/', (req, res) => {
 })
 
 const transforme_en_tableau = (collection) => {
-	let html = "<head><meta charset='utf-8'><link rel='stylesheet' type='text/css' href='../css/style.css'></head><body><h1>Liste des membres - Exercice 4</h1><table><tr><th>Prénom</th><th>Nom</th><th>Courriel</th><th>Téléphone</th></tr>"
+	let html = "<head><meta charset='utf-8'><link rel='stylesheet' type='text/css' href='../less/style.css'></head><body><h1>Liste des membres - Exercice 4</h1><table><tr><th>Prénom</th><th>Nom</th><th>Courriel</th><th>Téléphone</th></tr>"
 	for(elm of collection) {
 		html += "<tr>";
 		for(p in elm) {
