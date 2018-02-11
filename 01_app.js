@@ -4,16 +4,19 @@ const app = express();
 app.use(express.static('public'));
 let identifiant = 1;
 
+//////////////////////////////////////Route: Accueil
 app.get('/', (req, res) => {
  console.log('accueil')
  res.end('<h1>Accueil</h1>')
 })
 
+//transformer les données json en tableau html
 const transforme_en_tableau = (collection) => {
 	let html = "<head><meta charset='utf-8'><link rel='stylesheet' type='text/css' href='../less/style.css'></head><body><h1>Liste des membres - Exercice 4</h1><table><tr><th>Prénom</th><th>Nom</th><th>Courriel</th><th>Téléphone</th></tr>"
 	for(elm of collection) {
 		html += "<tr>";
 		for(p in elm) {
+			//supprimer la colonne de l'identifiant dans le tableau
 			if(p !== "id") {
 				html += "<td>" + elm[p] + "</td>";
 				console.log(p);
@@ -25,11 +28,13 @@ const transforme_en_tableau = (collection) => {
 	return html;
 }
 
+///////////////////////////////////Route: Formulaire
 app.get('/formulaire', function (req, res) {
 	console.log(__dirname);
 	res.sendFile( __dirname + "/public/html/" + "01_form.html" );
 })
 
+//////////////////////////////////Route: traiter_get
 app.get('/traiter_get', function (req, res) {
 	 // Preparer l'output en format JSON
 
@@ -56,6 +61,7 @@ app.get('/traiter_get', function (req, res) {
 	 res.end("Membre ajouté à la liste");
 })
 
+/////////////////////////////////////////Route: Membres
 app.get('/membres', function (req, res) {
 	const fs = require('fs');
 
@@ -67,6 +73,7 @@ app.get('/membres', function (req, res) {
 	});
 })
 
+//Définir les paramèetres du serveur
 var server = app.listen(8081, function () {
  var host = server.address().address
  var port = server.address().port
