@@ -14,3 +14,9 @@ html body table {
   width: 700px;
   table-layout: fixed;
 }
+html body table th {
+  background: blue;
+}
+html body table td {
+  background: lightblue;
+}
