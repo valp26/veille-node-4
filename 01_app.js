@@ -19,7 +19,6 @@ const transforme_en_tableau = (collection) => {
 			//supprimer la colonne de l'identifiant dans le tableau
 			if(p !== "id") {
 				html += "<td>" + elm[p] + "</td>";
-				console.log(p);
 			}
 		}
 		html += "</tr>";
@@ -43,19 +42,20 @@ app.get('/traiter_get', function (req, res) {
 
 	// on utilise l'objet req.query pour récupérer les données GET
 	 let reponse = {
-	 prenom:req.query.prenom,
-	 nom:req.query.nom,
-	 courriel:req.query.courriel,
-	 telephone:req.query.telephone,
-	 id:identifiant
+		 prenom:req.query.prenom,
+		 nom:req.query.nom,
+		 courriel:req.query.courriel,
+		 telephone:req.query.telephone,
+		 id:identifiant
 	 };
+
 	console.log(reponse);
 
 	const fs = require('fs');
 
 	fs.appendFile('public/data/membres.txt', ',' + JSON.stringify(reponse), function (err) {
-	  if (err) throw err;
-	  console.log('Sauvegardé');
+		if (err) throw err;
+		console.log('Sauvegardé');
 	});
 
 	 res.end("Membre ajouté à la liste");
@@ -75,9 +75,9 @@ app.get('/membres', function (req, res) {
 
 //Définir les paramèetres du serveur
 var server = app.listen(8081, function () {
- var host = server.address().address
- var port = server.address().port
+	var host = server.address().address
+	var port = server.address().port
  
- console.log("Exemple l'application écoute sur http://%s:%s", host, port)
+ 	console.log("Exemple l'application écoute sur http://%s:%s", host, port)
 
 })
