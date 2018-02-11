@@ -1,3 +1,4 @@
+//déclarer l'usage d'express
 const express = require('express');
 const app = express();
 app.use(express.static('public'));
@@ -13,7 +14,10 @@ const transforme_en_tableau = (collection) => {
 	for(elm of collection) {
 		html += "<tr>";
 		for(p in elm) {
-			html += "<td>" + elm[p] + "</td>";
+			if(p !== "id") {
+				html += "<td>" + elm[p] + "</td>";
+				console.log(p);
+			}
 		}
 		html += "</tr>";
 	}
